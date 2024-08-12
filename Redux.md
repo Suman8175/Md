@@ -101,15 +101,15 @@
      ```
   > <span style="color: #f54263; font-weight: bold;"><mark>[NOTE]<mark></span>
 
-    > <span style="background-color: #f54263; color: #000000">name</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- reserved keyword for createSlice.What you give name in value that will be the sliceName.
+    > <span style="background-color: #f54263; color: #000000"><mark>name</mark></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- reserved keyword for createSlice.What you give name in value that will be the sliceName.
 
-    ><span style="background-color: #f54263; color: #000000">reducers</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-takes all function which can change /modify the value in a slice because redux ensures there is only single source of truth.
+    ><span style="background-color: #f54263; color: #000000"><mark>reducers</mark></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-takes all function which can change /modify the value in a slice because redux ensures there is only single source of truth.
 
-    >Each function inside reducers can have access to  two value:<span style="background-color: #a1d6a1; color: #000000"> state </span> and <span style="background-color: #a1d6a1; color: #000000">action </span>.
+    >Each function inside reducers can have access to  two value:<span style="background-color: #a1d6a1; color: #000000"> <mark>state</mark> </span> and <span style="background-color: #a1d6a1; color: #000000"><mark>action</mark> </span>.
         >
-    >   <span style="background-color: #a1d6a1; color: #000000"> State contains all the current value access inside initialState...meaning suppose we added 10 more items in todoSlice (todos...inititalState key) we get access of it</span>
+    >   <span style="background-color: #a1d6a1; color: #000000"><mark> State contains all the current value access inside initialState...meaning suppose we added 10 more items in todoSlice (todos...inititalState key) we get access of it </mark></span>
     >
-    ><span style="background-color: #a1d6a1; color: #000000"> Action contains value which is needed for function to run...like we need id inside function to remove anything...we need data to add..so action holds the data coming from whoever uses it..like they pass the data and action catches it</span>
+    ><span style="background-color: #a1d6a1; color: #000000"><mark> Action contains value which is needed for function to run...like we need id inside function to remove anything...we need data to add..so action holds the data coming from whoever uses it..like they pass the data and action catches it</mark></span>
 
 
 
