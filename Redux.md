@@ -105,7 +105,7 @@
 
     ><span style="background-color: #f54263; color: #000000"><mark>reducers</mark></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-takes all function which can change /modify the value in a slice because redux ensures there is only single source of truth.
 
-    >Each function inside reducers can have access to  two value:<span style="background-color: #a1d6a1; color: #000000"> <mark>state</mark> </span> and <span style="background-color: #a1d6a1; color: #000000"><mark>action</mark> </span>.
+    >Each function inside reducers can have access to  two value:<span style="background-color: #a1d6a1; color: #000000"> <mark>state</mark> </span> and <span style="background-color: #a1d6a1; color: #000000"><mark>action</mark> </span>
     >
     >   <span style="background-color: #a1d6a1; color: #000000"><mark> State contains all the current value access inside initialState...meaning suppose we added 10 more items in todoSlice (todos...inititalState key) we get access of it </mark></span>
     >
