@@ -129,7 +129,7 @@
 ##
 
 ## 4. ***Update store we made earlier***
- Now remember we had store with ``` export const store=configureStore({}) ``` where no slice were registered.Now lets register.Now update it with below:
+ Now remember we had store ```Step:2``` with ``` export const store=configureStore({}) ``` where no slice were registered.Now lets register.Now update it with below:
 
 ```js
     import todoReducer from './todoSlice';//Remember to import
@@ -195,6 +195,23 @@ or if you have multiple reducer
 
     ```
 - Now user and todos contains all data store in <mark> todoSlice</mark> and <mark>authSlice.</mark>
+
+
+##
+
+## 7. ***Wrap main.jsx***
+
+```js
+import { Provider } from 'react-redux'
+import {store} from './app/store'
+
+ <React.StrictMode>
+   <Provider store={store}>
+     <App />
+   </Provider>
+ </React.StrictMode>
+```
+>Wrap main.jsx App with <Provider > which takes store as value store which we made in step 2
 
 
 
