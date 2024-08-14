@@ -191,3 +191,25 @@ services:
     ```sh
      HMGET bike:1 model price
     ```
+- ## Geo
+    - To add geographic data 
+    ```sh
+    GEOADD <keyName> <longitude> <latitude> <placeName>
+    ```
+    eg:
+    ```sh
+     GEOADD hotels:available 84.011033 28.178437 hotel:shangrilla
+     GEOADD hotels:available 84.010750 28.183530 hotel:tal
+     GEOADD hotels:available 84.003836 28.184770 hotel:basketball
+     GEOADD hotels:available 84.003385 28.192871 hotel:kalika
+     GEOADD hotels:available 84.001238 28.204640 hotel:amarsingh
+     GEOADD hotels:available 83.999735 28.212154 hotel:gandakiHospital
+    ```
+    - To find all available places within given radius
+    ```sh
+    GEOSEARCH <keySearch> FROMLONLAT <longitude> <latitude> BYRADIUS <noOfKm> km WITHDIST
+    ```
+    eg
+    ```sh
+    GEOSEARCH hotels:available FROMLONLAT 84.013233 28.178437 BYRADIUS 1 km WITHDIST
+    ```
