@@ -265,3 +265,40 @@ Meaning animate `from current to animated state`
         font-size: 60px;
     }
     ```
+
+## GSAP Text Effect
+
+- dwad
+    ```js
+    const h1=document.querySelector("h1");
+    const h1Text=h1.textContent;
+
+    const splittedChars = h1Text.split(""); 
+
+    h1.innerHTML = '';
+
+    splittedChars.forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        h1.appendChild(span);
+    });
+
+    gsap.from("h1 span", {
+        yPercent: 130,
+        stagger:0.05,
+        ease:"back.out(1.7)",
+        duration:1,
+        scrollTrigger:{
+            trigger:".container ",
+            scroller:"body",
+            markers:true,
+            start:"top 40%",
+            scrub:2
+        }
+    }
+    )
+    ```
+    >Here we first select text in h1,split it and append it in h1 as each char have span...now we do `gsap.from("h1 span")`
+
+    >Remember to add css to span `h1 span {
+    >display: inline-block; /* Allows transforms to work */}`
