@@ -330,8 +330,8 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 3. Add the path to public and private key in `application.properties`
     ```properties
     #jwt
-    jwt.rsa-public-key=classpath:certs/privateKey.pem
-    jwt.rsa-private-key=classpath:certs/publicKey.pem
+    jwt.rsa-private-key=classpath:certs/privateKey.pem
+    jwt.rsa-public-key=classpath:certs/publicKey.pem
     ```
 4. Let's now create a new `filterChain` similar to  `/api`  as  `sign-in` api, which will return **accessToken**  which we created in [Step:3(5)](#point-5)
     - **STATELESS** : A stateless architecture is one in which the server does not store any session data for a client. Instead, each request from the client contains all the information necessary to complete the request
