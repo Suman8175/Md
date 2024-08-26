@@ -723,10 +723,20 @@ Crate a dto class
                 log.info("[JwtAccessTokenFilter:doFilterInternal] Completed");
 
                 filterChain.doFilter(request,response);
-            }catch (JwtValidationException jwtValidationException){
-                log.error("[JwtAccessTokenFilter:doFilterInternal] Exception due to :{}",jwtValidationException.getMessage());
-                throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,jwtValidationException.getMessage());
             }
+         catch (JwtValidationException jwtValidationException){
+            log.error("[JwtAccessTokenFilter:doFilterInternal] Exception due to :{}", jwtValidationException.getMessage());
+            response.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
+            response.getWriter().write(jwtValidationException.getMessage());
+            response.getWriter().flush();
+        }
+        catch (Exception e) {
+            log.error("[JwtAccessTokenFilter:doFilterInternal] Unexpected exception: {}", e.getMessage());
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.getWriter().write("An unexpected error occurred");
+            response.getWriter().flush();
+            // Do not call filterChain.doFilter() here
+        }
         }
     }
 
