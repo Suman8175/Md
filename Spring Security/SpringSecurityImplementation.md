@@ -148,7 +148,7 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
     @RequiredArgsConstructor
     public class SecurityConfig  {
 
-        private final UserManagerConfig userManagerConfig;
+        private final UserInfoManagerConfig userManagerConfig;
 
         @Order(1)
         @Bean
