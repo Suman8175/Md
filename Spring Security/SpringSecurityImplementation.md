@@ -136,7 +136,7 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
         ```java
         @Repository
         public interface UserRepository extends JpaRepository<UserInfoEntity,Long> {
-            Optional<UserInfoEntity> findByEmailId(String emailId);
+            Optional<User> findByEmailId(String emailId);
         }
         ```
         <a id="point-5"></a>
