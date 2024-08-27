@@ -203,3 +203,82 @@
     ```
 
 > # Note: If you want like UI update when data is posting in server before result comes and if response is fail show look for `Optimistic Updates Ui`
+>
+- Eg: nothing added in anywhere just checking
+  ```js
+  <div className={`mb-5 ${mutation.isPending ? "opacity-50" : "opacity-100"}`}>
+  {mutation.isPending ? mutation.variables.productName: mutation.isSuccess ? mutation.variables.productName : data.productName }
+  </div>
+  ```
+> Note: if our form UI is in other component see `optimistics updates cache` 
+
+
+## Pagination
+- Define `skip/offset` and `limit` in useState hook
+  ```js
+  const [limit] = useState(4) //no of items displayed in screen 4 items in each page
+  const [skip, setSkip] = useState(0) //page 2 will have 4 value of skip,page 3 will have 8 and so on
+  ```
+
+- Define button for `next` and `prev`
+  > Note:you can have two separate function in each button or same function with - value for prev and + value for next
+  ```js
+  <div className="flex justify-center gap-5 mt-5">
+              <button className='px-3 py-1 text-white bg-blue-500' onClick={() => { handlePagination(-limit) }}>Previous</button>
+              <button className='px-3 py-1 text-white bg-blue-500' onClick={() => { handlePagination(limit) }}>Next</button>
+            </div>
+  ```
+- Now define the function which will either increase or decrease skip value for next page 
+   ```js
+  const handlePagination = (moveCount) => {
+      setSkip((prev) => {
+        return Math.max(prev + moveCount, 0)
+      })
+    }
+    //seting Skip value to +4 for next page and -4 for prev page
+   ```
+
+- Now add the `limit` and `offset/skip` in `queryKey`
+  ```js
+  useQuery({ queryKey: ['products',limit,skip],
+             queryFn: () => datafetch(limit, skip), 
+             staleTime: 5000 ,
+             placeholderData: keepPreviousData})
+  ```
+
+  >Notice that the pagination is done but it is not shown in url...like if we share url it will not show the paginated to do it use useSearchParams hook
+
+- Remove useState hook and use useSearchParams hook
+  ```js
+   const [searchParam,setSearchParam] =useSearchParams({limit:4,skip:0});
+   const skip=parseInt(searchParam.get('skip')) || 0;
+   const limit=parseInt(searchParam.get('limit')) || 4;
+  ```
+- Modify `handlePagination` function
+  ```js
+   const handlePagination = (moveCount) => {
+    setSearchParam((prev) => {
+      prev.set('skip', Math.max(skip + moveCount, 0));
+      return prev;
+  });
+  }
+  ```
+- Add `skip` and `limit` in `queryKey` if already not added:
+  ```js
+  useQuery({ queryKey: ['products',limit,skip],
+             queryFn: () => datafetch(limit, skip), 
+             staleTime: 5000 ,
+             placeholderData: keepPreviousData})
+  ```
+
+## **Use debounce `new dependency` for searching data.**
+- Use `lodash.debounce` for searching data.Like we want to fetch data after 1 seconds not like on every search..meaning
+  - User wants to search Phone
+  - Normally we do `GET` req on `P`
+  - `GET` req on `Ph`
+  - `GET` req on `Pho`
+  - `GET` req on `Phon`
+  - `GET` req on `Phone`
+- This is not good as it loads up the server we want to debounce on `1 second` or `n second` the keyword change
+
+
